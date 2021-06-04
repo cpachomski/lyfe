@@ -1,0 +1,5 @@
+redis==3.3.8
+django==3.2.3
+celery==5.1.0
+yfinance==0.1.59
+nltk==3.3

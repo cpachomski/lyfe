@@ -1,0 +1,5 @@
+.env
+celery*
+db*
+dump.rdb
+venv

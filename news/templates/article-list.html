@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div class="flex space-between container">
+    <div class="max-w-sm p-2 ">
+        <h1 class="text-5xl my-8 font-serif py-4 border-b-4">News</h1>
+        {% for story in stories %}
+        <div class='py-4 my-4 border-b-2 {{story.source|lower}}-card'>
+            <div class="flex items-center mb-4">
+                <img src="{{story.source_logo}}" width="25px" height="25px">
+                <strong class="text-sm ml-2">{{ story.section|upper }}</strong>
+            </div>
+            <a href="{{ story.url }}" class="text-3xl font-serif pb-2 italic">{{ story.headline }}</a>
+            <p class="mt-2">
+                {% if story.byline %}<strong class="text-sm">{{story.byline}}</strong><br/>{% endif %}
+                {% if story.last_updated %}<span class="text-sm">{{story.last_updated|date:"l, F j - P"}}</span>{% endif %}
+            </p>        
+        </div>
+        {% endfor %}
+    </div>
+    <div class="max-w-sm ml-10 p-2 ">
+        <h1 class="text-5xl my-8 py-4 border-b-4">Stonks</h1>
+        {% for stock in stocks %}
+        <div class='py-4 my-4 border-b-2'>
+            <a href="{{ stock.instrument }}" class="text-3xl pb-2">{{ stock.symbol }}</a>
+
+            <p class="mt-2">
+                {% if stock.open %}<strong class="text-sm">Open</strong>: <span>{{stock.open}}</span><br/>{% endif %}
+                {% if stock.high %}<strong class="text-sm">Hi</strong>: <span>{{stock.high}}</span><br/>{% endif %}
+                {% if stock.low %}<strong class="text-sm">Lo</strong>: <span>{{stock.low}}</span><br/>{% endif %}
+                {% if stock.high_52_weeks %}<strong class="text-sm">52 hi</strong>: <span>{{stock.high_52_weeks}}</span><br/>{% endif %}
+                {% if stock.low_52_weeks %}<strong class="text-sm">52 lo</strong>: <span>{{stock.low_52_weeks}}</span><br/>{% endif %}
+                {% if stock.volume %}<strong class="text-sm">volume</strong>: <span>{{stock.volume}}</span><br/>{% endif %}
+                {% if stock.sector %}<strong class="text-sm">sector</strong>: <span>{{stock.sector}}</span><br/>{% endif %}
+                {% if stock.shares_outstanding %}<strong class="text-sm">shares outstanding</strong>: <span>{{stock.shares_outstanding}}</span><br/>{% endif %}
+                {% if stock.pe_ratio %}<strong class="text-sm">pe_ratio</strong>: <span>{{stock.pe_ratio}}</span><br/>{% endif %}
+                {% if stock.market_cap %}<strong class="text-sm">market_cap</strong>: <span>{{stock.market_cap}}</span><br/>{% endif %}
+                {% if stock.average_volume %}<strong class="text-sm">average_volume</strong>: <span>{{stock.average_volume}}</span><br/>{% endif %}
+                {% if stock.average_volume_2_weeks %}<strong class="text-sm">average_volume_2_weeks</strong>: <span>{{stock.average_volume_2_weeks}}</span><br/>{% endif %}
+            </p>        
+        </div>
+        {% endfor %}
+    </div>
+      <div class="max-w-sm ml-10 p-2 ">
+        <h1 class="text-5xl my-8 py-4 border-b-4">Options</h1>
+        {% for opt in opties %}
+        <div class='py-4 my-4 border-b-2'>
+            <a href="{{ option.url }}" class="text-3xl pb-2">{{ option.chain_symbol }}</a>
+
+            <p class="mt-2">
+                {% if option.average_price %}<strong class="text-sm">avg price</strong>: <span>{{option.average_price}}</span><br/>{% endif %}
+                {% if option.quantity %}<strong class="text-sm">qty</strong>: <span>{{option.quantity}}</span><br/>{% endif %}
+            </p>        
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
